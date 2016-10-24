@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel = "stylesheet" type ="text/css" href="style.css"/>
+    <script type="text/javascript">
+var state;
+      function createXHR(id) 
+      {
+        var req = null;
+        if(window.XMLHttpRequest)
+        { req = new XMLHttpRequest(); }
+        else if(window.ActiveXObject)
+        {
+          try
+          { req = new ActiveXObject("Msxml2.XMLHTTP"); }
+          catch (e)
+          {
+            try
+            { req = new ActiveXObject("Microsoft.XMLHTTP"); }
+            catch (e)
+            { alert("XHR not created"); }
+          }
+        }
+        return req;
+      } // createXHR()
+function addcat(formElements)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+		getcategories();
+		state = 0;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open(formElements.method, formElements.action, true);
+        req.send(new FormData (formElements));
+      } // affiche()
+function updatecat(formElements)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+		getcategories();
+		state = 0;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open(formElements.method, formElements.action, true);
+        req.send(new FormData (formElements));
+      } // affiche()
+function deletecat(formElements)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+		getcategories();
+		state = 0;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open(formElements.method, formElements.action, true);
+        req.send(new FormData (formElements));
+      } // affiche()
+function addproduct(formElements)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+		getcategories();
+		state = 0;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open(formElements.method, formElements.action, true);
+        req.send(new FormData (formElements));
+      } // affiche()
+function updateproduct(formElements)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+		getcategories();
+		state = 0;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open(formElements.method, formElements.action, true);
+        req.send(new FormData (formElements));
+      } // affiche()
+
+function deleteproduct(formElements)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+		getcategories();
+		state = 0;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open(formElements.method, formElements.action, true);
+        req.send(new FormData (formElements));
+      } // affiche()
+
+function trieordre(valeur)
+      { 
+	var ascendce = document.getElementById("ascendance").value;
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+              
+             document.getElementById("main_content").innerHTML = req.responseText;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open("GET", "sort.php?type="+valeur+"&"+"ascd"+"="+ascendce+"&"+"cat"+"="+state, true);
+        req.send(null);
+      } // affiche()
+function getcategories()
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("catlist").innerHTML = req.responseText;
+           }
+           else
+           {
+             document.getElementById("catlist").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open("GET", "categorie.php", true);
+        req.send(null);
+      }
+function categorizer(val)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+	     state = val;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open("GET", "categorizer.php?cat="+val, true);
+        req.send(null);
+      }
+
+function searsh(valeur)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open("GET", "search.php?valsearch="+valeur, true);
+        req.send(null);
+      }
+
+function getdetails(prod)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open("GET", "details.php?product="+prod, true);
+        req.send(null);
+      } 
+
+function manage_menu(choix)
+      { 
+	var req = createXHR();
+        req.onreadystatechange = function()
+        { 
+          if(req.readyState==4 && req.status==200)
+           {
+             document.getElementById("main_content").innerHTML = req.responseText;
+           }
+           else
+           {
+             document.getElementById("main_content").innerHTML =
+              "Error: returned status code " + req.status + " " + req.statusText;
+           }
+        };
+        req.open("GET", "maganemenu.php?choice="+choix, true);
+        req.send(null);
+      }
+    </script>
+<title> Mini AmaZon</title>
+</head>
+
+<body>
+<table width="1123" height="545" border="1">
+  <tr>
+    <th width="223" height="68" scope="col">&nbsp;</th>
+    <th colspan="3" > <a href ="Acceuil.html">ACCEUIL </a>    |  <a href ="Acceuil.html"> NOS PRODUITS </a>  |  <a href ="Admin.html"> ADMIN </a>  | CONTACT</th>
+  </tr>
+  <tr>
+    <td height="50">&nbsp;</td>
+    <form name = "trieform" id = "trieform" method="post" action="">
+    <td width="236">Trier par ordre : 
+    <select id = "ordre" name="ordre" onchange="trieordre(ordre.value)">
+    <option value="Nom">alphabetique</option>
+    <option value="Prix">prix</option>
+    <option value="DateMaj">last_update</option>
+    <option value="ScoreMoyen">popularite</option>
+    </select></td>
+    <td width="141">Ascendance :
+    <select id = "ascendance" name="ascendance" onchange="trieordre(ordre.value)">
+    <option value="ASC">croissant</option>
+    <option value="DESC">decroissant</option>
+    </select>
+    </td>
+    </form>
+    <td width="301"><div align="right">
+    <form id="form1" name="form1" method="post" action="javascript:searsh(searchbox.value)">
+    <input name="searchbox" type="text" id="searchbox" maxlength="50" />
+    <input type="submit" name="searchButton" id="searchButton" value="Rechercher">
+    </form></div></td>
+  </tr>
+  <tr>
+    <td height="357" valign="top"><div class = "left_content"><div class = "title_box">Categories</div><ul id  ="catlist" class = "left_menu"></ul></div></td>
+    <td height ="354">
+ <div class ="admin_box_big">
+ <label>
+	<h2>Gestion de la base de données</h2>
+        <select name="manager" size="10" id="manager" onchange="javascript:manage_menu(manager.value)">
+          <option value="addcat">Ajouter une catégorie de produits</option>
+          <option value="delcat">Supprimer une catégorie de produits</option>
+          <option value="updatecat">Mettre à jour une catégorie de produits</option>
+          <option value="addpro">Ajouter un produit </option>
+          <option value="delpro">Supprimer un produit</option>
+          <option value="updatepro">Mettre à jour un produit</option>
+        </select>
+</label>
+</div>
+</td>
+<td colspan = "2" >
+<div id ="main_content">
+        
+ </div>&nbsp;
+</td>
+  </tr>
+  <tr>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>
